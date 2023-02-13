@@ -9,9 +9,6 @@ class Department {
         this.employees = [];
         console.log(Department.fiscalYear);
     }
-    describe() {
-        console.log(`Department (${this.id}: ${this.name})`);
-    }
     addEmployee(employee) {
         this.employees.push(employee);
     }
@@ -25,6 +22,9 @@ class ITDepartment extends Department {
     constructor(id, admins) {
         super(id, 'IT');
         this.admins = admins;
+    }
+    describe() {
+        console.log('IT・ID: ' + this.id);
     }
 }
 class AccountingDepartment extends Department {
@@ -44,6 +44,16 @@ class AccountingDepartment extends Department {
         super(id, 'Accounting');
         this.reports = reports;
         this.lastRepoet = reports[0];
+    }
+    static getInstance() {
+        if (AccountingDepartment.instance) {
+            return this.instance;
+        }
+        this.instance = new AccountingDepartment('d2', []);
+        return this.instance;
+    }
+    describe() {
+        console.log('Accounting・ID: ' + this.id);
     }
     addReport(text) {
         this.reports.push(text);
@@ -67,11 +77,12 @@ it.addEmployee('Manu');
 it.describe();
 it.printEmployeeInfomation();
 console.log(it);
-const accoounting = new AccountingDepartment('d2', []);
-accoounting.mostRecentReport = 'Full Year Accounting Report';
-accoounting.addReport('Something');
-console.log(accoounting.mostRecentReport);
-accoounting.printReports();
-accoounting.addEmployee('Max');
-accoounting.addEmployee('Manu');
-accoounting.printEmployeeInfomation();
+const accounting = AccountingDepartment.getInstance();
+const accounting2 = AccountingDepartment.getInstance();
+console.log(accounting, accounting2);
+accounting.mostRecentReport = 'Full Year Accounting Report';
+accounting.addReport('Something');
+console.log(accounting.mostRecentReport);
+accounting.addEmployee('Max');
+accounting.addEmployee('Manu');
+accounting.describe();
