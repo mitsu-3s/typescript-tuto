@@ -42,6 +42,13 @@ class AccountingDepartment extends Department {
         throw new Error('Missing Report')
     }
 
+    set mostRecentReport(value: string) {
+        if (!value) {
+            throw new Error('Missing Set Value')
+        }
+        this.addReport(value)
+    }
+
     constructor(id: string, private reports: string[]) {
         super(id, 'Accounting')
         this.lastRepoet = reports[0]
@@ -79,9 +86,9 @@ console.log(it)
 
 const accoounting = new AccountingDepartment('d2', [])
 
-console.log(accoounting.mostRecentReport)
-
+accoounting.mostRecentReport = 'Full Year Accounting Report'
 accoounting.addReport('Something')
+console.log(accoounting.mostRecentReport)
 accoounting.printReports()
 
 accoounting.addEmployee('Max')
