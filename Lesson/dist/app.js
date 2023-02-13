@@ -56,4 +56,11 @@ function moveAnimal(animal) {
 }
 moveAnimal({ type: 'bird', flyingSpeed: 10 });
 const userInputElement = document.getElementById('user-input');
-userInputElement.value = 'Hello';
+if (userInputElement) {
+    ;
+    userInputElement.value = 'Hello';
+}
+const errorBag = {
+    email: 'Not a valid email address',
+    username: 'User name cannot contain symbols',
+};
