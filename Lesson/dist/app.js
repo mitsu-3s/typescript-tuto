@@ -1,7 +1,4 @@
 "use strict";
-const userName = 'Max';
-let age = 30;
-age = 29;
 const add = (...numbers) => {
     return numbers.reduce((curResult, curValue) => {
         return curResult + curValue;
@@ -18,8 +15,12 @@ if (button) {
 const hobbies = ['Sports', 'Cooking'];
 const activeHobbies = ['Hiking', ...hobbies];
 activeHobbies.push(...hobbies);
+const [hobby1, hobby2, ...remainingHobbies] = hobbies;
+console.log(hobbies, hobby1, hobby2);
 const person = {
-    name: 'Max',
+    firstName: 'Max',
     age: 30,
 };
+const { firstName: userName, age } = person;
+console.log(userName, age, person);
 const copiedPerson = Object.assign({}, person);
