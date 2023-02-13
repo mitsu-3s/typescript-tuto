@@ -23,12 +23,20 @@ class ITDepartment extends Department {
     }
 }
 class AccountingDepartment extends Department {
+    get mostRecentReport() {
+        if (this.lastRepoet) {
+            return this.lastRepoet;
+        }
+        throw new Error('Missing Report');
+    }
     constructor(id, reports) {
         super(id, 'Accounting');
         this.reports = reports;
+        this.lastRepoet = reports[0];
     }
     addReport(text) {
         this.reports.push(text);
+        this.lastRepoet = text;
     }
     printReports() {
         console.log(this.reports);
@@ -47,6 +55,7 @@ it.describe();
 it.printEmployeeInfomation();
 console.log(it);
 const accoounting = new AccountingDepartment('d2', []);
+console.log(accoounting.mostRecentReport);
 accoounting.addReport('Something');
 accoounting.printReports();
 accoounting.addEmployee('Max');
