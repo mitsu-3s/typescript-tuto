@@ -1,19 +1,44 @@
-function add(n1, n2, showResult, phrase) {
-    if (typeof n1 !== "number" || typeof n2 !== "number") {
-        throw new Error("Missing Input Value");
-    }
-    var result = n1 + n2;
-    if (showResult) {
-        console.log(phrase + result);
-    }
-    else {
-        return result;
-    }
+// const person: {
+//     name: string
+//     age : number
+// }
+// const person: {
+//     name: string
+//     age: number
+//     hobbies: string[]
+//     role: [number, string]
+// } = {
+//     name: 'mitsuki',
+//     age: 19,
+//     hobbies: ['Sports', 'Cooking'],
+//     role: [2, 'author']
+// }
+// const ADMIN = 0
+// const READ_ONLY = 1
+// const AUTHOR = 2
+var Role;
+(function (Role) {
+    Role["ADMIN"] = "ADMIN";
+    Role[Role["READ_ONLY"] = 100] = "READ_ONLY";
+    Role[Role["AUTHOR"] = 200] = "AUTHOR";
+})(Role || (Role = {}));
+var person = {
+    name: 'mitsuki',
+    age: 19,
+    hobbies: ['Sports', 'Cooking'],
+    role: Role.ADMIN
+};
+// person.role.push('admin')
+// person.role[1] = 10
+// person.role = [0, 'admin', 'user']
+var favoriteActivities;
+favoriteActivities = ['Sports'];
+console.log(person.name);
+for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
+    var hobby = _a[_i];
+    console.log(hobby.toUpperCase());
+    // console.log(hobby.map())
 }
-var number1;
-number1 = 5;
-var number2 = 2.8;
-var printResult = true;
-var resultPhrase = "Result: ";
-// resultPhrase = 0
-add(number1, number2, printResult, resultPhrase);
+if (person.role === Role.ADMIN) {
+    console.log('管理者');
+}
