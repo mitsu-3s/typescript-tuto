@@ -8,13 +8,19 @@ function Logger(logString: string) {
 
 function WithTemplate(template: string, hookId: string) {
     console.log('TEMPLATE factory')
-    return function (constructor: any) {
-        console.log('Display template')
-        const hookEl = document.getElementById(hookId)
-        const p = new constructor()
-        if (hookEl) {
-            hookEl.innerHTML = template
-            hookEl.querySelector('h1')!.textContent = p.name
+    return function <T extends { new (...args: any[]): { name: string } }>(
+        originalConstructor: T
+    ) {
+        return class extends originalConstructor {
+            constructor(..._: any[]) {
+                super()
+                console.log('Display template')
+                const hookEl = document.getElementById(hookId)
+                if (hookEl) {
+                    hookEl.innerHTML = template
+                    hookEl.querySelector('h1')!.textContent = this.name
+                }
+            }
         }
     }
 }
