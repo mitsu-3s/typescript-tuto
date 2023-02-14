@@ -11,9 +11,32 @@
 //     // data.split(' ')
 // })
 
-function merge<T extends {}, U>(objA: T, objB: U) {
+function merge<T extends object, U extends object>(objA: T, objB: U) {
     return Object.assign(objA, objB)
 }
 
-const mergedObj = merge({ name: 'Max' }, { age: 30 })
-mergedObj.age
+const mergedObj = merge({ name: 'Max', hobbies: ['Sports'] }, { age: 30 })
+console.log(mergedObj)
+
+interface Lengthy {
+    length: number
+}
+
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+    let descriptionText = 'No Value'
+    if (element.length > 0) {
+        descriptionText = 'Value Count is ' + element.length
+    }
+    return [element, descriptionText]
+}
+
+console.log(countAndDescribe(['Sports', 'Cooking']))
+
+function extractAndConvert<T extends object, U extends keyof T>(
+    obj: T,
+    key: U
+) {
+    return 'Value: ' + obj[key]
+}
+
+extractAndConvert({ name: 'Max' }, 'name')
