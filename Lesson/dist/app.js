@@ -71,13 +71,13 @@ class ProjectInput {
             minLength: 5,
         };
         const mandayValidatable = {
-            value: enteredManday,
+            value: +enteredManday,
             required: true,
             min: 1,
             max: 1000,
         };
-        if (!validate(titleValidatable) &&
-            !validate(descriptionValidatable) &&
+        if (!validate(titleValidatable) ||
+            !validate(descriptionValidatable) ||
             !validate(mandayValidatable)) {
             alert('Input value is incorrect. Please try again.');
             return;

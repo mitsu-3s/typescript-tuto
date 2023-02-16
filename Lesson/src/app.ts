@@ -30,7 +30,6 @@ function validate(validatableInput: Validatable) {
             isValid &&
             validatableInput.value.length <= validatableInput.maxLength
     }
-
     if (
         validatableInput.min != null &&
         typeof validatableInput.value === 'number'
@@ -110,14 +109,14 @@ class ProjectInput {
             minLength: 5,
         }
         const mandayValidatable: Validatable = {
-            value: enteredManday,
+            value: +enteredManday,
             required: true,
             min: 1,
             max: 1000,
         }
         if (
-            !validate(titleValidatable) &&
-            !validate(descriptionValidatable) &&
+            !validate(titleValidatable) ||
+            !validate(descriptionValidatable) ||
             !validate(mandayValidatable)
         ) {
             alert('Input value is incorrect. Please try again.')
